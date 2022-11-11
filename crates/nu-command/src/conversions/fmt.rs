@@ -22,7 +22,7 @@ impl Command for Fmt {
         Signature::build("fmt")
             .input_output_types(vec![
                 (Type::Number, Type::Record(vec![])),
-                (Type::Filesize, Type::Record(vec![]))
+                (Type::Filesize, Type::Record(vec![])),
             ])
             .category(Category::Conversions)
     }
@@ -32,57 +32,110 @@ impl Command for Fmt {
     }
 
     fn examples(&self) -> Vec<Example> {
-        vec![Example {
-            description: "Get a record containing multiple formats for the number 42",
-            example: "42 | fmt",
-            result: Some(Value::Record {
-                cols: vec![
-                    "binary".into(),
-                    "debug".into(),
-                    "display".into(),
-                    "lowerexp".into(),
-                    "lowerhex".into(),
-                    "octal".into(),
-                    "upperexp".into(),
-                    "upperhex".into(),
-                ],
-                vals: vec![
-                    Value::String {
-                        val: "0b101010".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "42".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "42".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "4.2e1".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "0x2a".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "0o52".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "4.2E1".to_string(),
-                        span: Span::test_data(),
-                    },
-                    Value::String {
-                        val: "0x2A".to_string(),
-                        span: Span::test_data(),
-                    },
-                ],
-                span: Span::test_data(),
-            }),
-        }]
+        vec![
+            Example {
+                description: "Get a record containing multiple formats for the number 42",
+                example: "42 | fmt",
+                result: Some(Value::Record {
+                    cols: vec![
+                        "binary".into(),
+                        "debug".into(),
+                        "display".into(),
+                        "lowerexp".into(),
+                        "lowerhex".into(),
+                        "octal".into(),
+                        "upperexp".into(),
+                        "upperhex".into(),
+                    ],
+                    vals: vec![
+                        Value::String {
+                            val: "0b101010".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "42".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "42".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "4.2e1".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0x2a".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0o52".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "4.2E1".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0x2A".to_string(),
+                            span: Span::test_data(),
+                        },
+                    ],
+                    span: Span::test_data(),
+                }),
+            },
+            Example {
+                description: "Get a record containing multiple formats for filesize 42B",
+                example: "42B | into filesize | fmt",
+                result: Some(Value::Record {
+                    cols: vec![
+                        "binary".into(),
+                        "debug".into(),
+                        "display".into(),
+                        "lowerexp".into(),
+                        "lowerhex".into(),
+                        "octal".into(),
+                        "upperexp".into(),
+                        "upperhex".into(),
+                    ],
+                    vals: vec![
+                        Value::String {
+                            val: "0b101010".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "42".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "42".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "4.2e1".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0x2a".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0o52".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "4.2E1".to_string(),
+                            span: Span::test_data(),
+                        },
+                        Value::String {
+                            val: "0x2A".to_string(),
+                            span: Span::test_data(),
+                        },
+                    ],
+                    span: Span::test_data(),
+                }),
+            },
+        ]
     }
 
     fn run(
